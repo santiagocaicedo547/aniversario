@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestra Historia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Italiana&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #3a2b2f;
+    --paper: #fbf3ee;
+    --rose-deep: #a83b52;
+    --rose: #c9647a;
+    --rose-soft: #e8b4bc;
+    --gold: #b98a4e;
+    --thread: #d8a5ac;
+    --line: rgba(58,43,47,0.18);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background: var(--paper);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(201,100,122,0.08), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgba(185,138,78,0.08), transparent 40%);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ---------- CINTA DE PAPEL / MARCO ---------- */
+  .frame{
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 0 120px;
+    position: relative;
+  }
+
+  .frame::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    border: 10px solid transparent;
+    z-index: 50;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    text-align:center;
+    padding: 70px 30px 40px;
+    position: relative;
+  }
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    letter-spacing: 5px;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--rose-deep);
+    margin-bottom: 18px;
+  }
+
+  .eyebrow::before, .eyebrow::after{
+    content:"·";
+    margin: 0 10px;
+  }
+
+  h1.title{
+    font-family:'Italiana', serif;
+    font-size: clamp(42px, 9vw, 64px);
+    color: var(--rose-deep);
+    line-height: 1.05;
+    font-weight: 400;
+  }
+
+  .subtitle{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(24px, 5vw, 32px);
+    color: var(--ink);
+    margin-top: 6px;
+  }
+
+  .tagline{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 19px;
+    margin-top: 22px;
+    color: var(--ink);
+    opacity: 0.85;
+  }
+
+  .divider{
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 28px auto;
+    position: relative;
+  }
+  .divider::after{
+    content:"♥";
+    position:absolute;
+    top:50%; left:50%;
+    transform: translate(-50%,-50%);
+    background: var(--paper);
+    padding: 0 10px;
+    color: var(--rose-deep);
+    font-size: 12px;
+  }
+
+  /* ---------- FOTOS ---------- */
+  .gallery{
+    display:flex;
+    gap: 14px;
+    padding: 10px 24px 30px;
+  }
+
+  .photo-slot{
+    flex:1;
+    aspect-ratio: 4/5;
+    border-radius: 4px 4px 60px 4px;
+    overflow:hidden;
+    position: relative;
+    box-shadow: 0 18px 40px -14px rgba(58,43,47,0.35);
+    border: 6px solid #fff;
+  }
+
+  .photo-slot:nth-child(2){
+    margin-top: 26px;
+    border-radius: 4px 4px 4px 60px;
+  }
+
+  .photo-slot img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display:block;
+  }
+
+  .photo-slot .placeholder{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction: column;
+    gap: 8px;
+    background: linear-gradient(160deg, #f3dfe2, #ecd3c9);
+    color: var(--rose-deep);
+    font-family:'Cormorant Garamond', serif;
+    font-size: 15px;
+    text-align:center;
+    padding: 14px;
+  }
+
+  .placeholder small{
+    font-family:'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  /* ---------- CONTADOR ---------- */
+  .counter-section{
+    margin: 10px 24px 40px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-align:center;
+    box-shadow: 0 20px 50px -20px rgba(58,43,47,0.2);
+    border: 1px solid var(--line);
+  }
+
+  .since{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--rose-deep);
+    margin-bottom: 20px;
+  }
+
+  .counter-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .counter-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 4px;
+  }
+
+  .counter-num{
+    font-family:'Italiana', serif;
+    font-size: clamp(28px, 7vw, 40px);
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    line-height:1;
+  }
+
+  .counter-label{
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rose);
+  }
+
+  .counter-sep{
+    grid-column: span 4;
+    height: 1px;
+    background: var(--line);
+    margin: 16px 0;
+  }
+
+  .counter-footer{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink);
+    opacity: 0.8;
+  }
+
+  /* ---------- SOBRE / CARTA ---------- */
+  .letter-wrap{
+    margin: 0 24px 40px;
+    position: relative;
+  }
+
+  .envelope{
+    background: linear-gradient(160deg, var(--rose-soft), var(--rose));
+    border-radius: 16px;
+    padding: 28px 26px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 20px 50px -20px rgba(168,59,82,0.5);
+    transition: transform 0.4s ease;
+    text-align:center;
+    color: #fff;
+  }
+
+  .envelope:hover{ transform: translateY(-3px); }
+
+  .envelope .flap-icon{
+    font-family:'Italiana', serif;
+    font-size: 40px;
+    display:block;
+    margin-bottom: 10px;
+  }
+
+  .envelope-title{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+  }
+
+  .envelope-hint{
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-top: 8px;
+  }
+
+  .letter-card{
+    background: #fff;
+    border-radius: 16px;
+    padding: 34px 28px;
+    margin-top: 16px;
+    box-shadow: 0 20px 50px -20px rgba(58,43,47,0.3);
+    border: 1px solid var(--line);
+    display: none;
+  }
+
+  .letter-card.open{
+    display:block;
+    animation: unfold 0.6s ease;
+  }
+
+  @keyframes unfold{
+    from{ opacity:0; transform: translateY(-14px) scale(0.98); }
+    to{ opacity:1; transform: translateY(0) scale(1); }
+  }
+
+  .letter-heading{
+    font-family:'Italiana', serif;
+    font-size: 24px;
+    color: var(--rose-deep);
+    margin-bottom: 18px;
+    text-align:center;
+  }
+
+  .letter-body p{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+
+  .letter-signoff{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--rose-deep);
+    text-align: right;
+    margin-top: 10px;
+  }
+
+  /* ---------- BOTON SORPRESA ---------- */
+  .cta-wrap{
+    text-align:center;
+    margin: 10px 24px 50px;
+  }
+
+  .cta-btn{
+    background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+    color:#fff;
+    border:none;
+    padding: 18px 50px;
+    border-radius: 40px;
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    cursor:pointer;
+    box-shadow: 0 16px 34px -12px rgba(168,59,82,0.55);
+    transition: transform 0.25s ease;
+  }
+
+  .cta-btn:hover{ transform: scale(1.04); }
+  .cta-btn:active{ transform: scale(0.97); }
+
+  .cta-hint{
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-top: 12px;
+  }
+
+  .surprise{
+    margin-top: 22px;
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--rose-deep);
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease;
+  }
+
+  .surprise.show{
+    opacity: 1;
+    max-height: 200px;
+    margin-top: 22px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer{
+    text-align:center;
+    padding: 20px 30px 0;
+  }
+
+  .footer .divider{ margin: 0 auto 24px; }
+
+  .footer-line{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .footer-line span{
+    color: var(--rose-deep);
+  }
+
+  /* ---------- HEARTS FLOTANTES ---------- */
+  .hearts{
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow:hidden;
+    z-index: 0;
+  }
+
+  .hearts span{
+    position:absolute;
+    bottom: -40px;
+    color: var(--rose-soft);
+    opacity: 0.5;
+    animation: float 14s linear infinite;
+    font-size: 16px;
+  }
+
+  @keyframes float{
+    to{ transform: translateY(-110vh) translateX(20px) rotate(20deg); opacity:0; }
+  }
+
+  /* ---------- BOTON DE MUSICA ---------- */
+  .music-btn{
+    position: fixed;
+    top: 22px;
+    right: 22px;
+    z-index: 60;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: radial-gradient(circle at 35% 30%, #e8879a, var(--rose-deep));
+    box-shadow: 0 14px 28px -10px rgba(168,59,82,0.6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size: 20px;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  .music-btn.playing{
+    animation: pulse 1s ease-in-out infinite;
+  }
+
+  @keyframes pulse{
+    0%,100%{ transform: scale(1); }
+    50%{ transform: scale(1.08); }
+  }
+
+  .music-hint{
+    position: fixed;
+    top: 82px;
+    right: 18px;
+    z-index: 60;
+    font-family:'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-align: right;
+    color: var(--rose-deep);
+    max-width: 90px;
+    line-height: 1.3;
+    opacity: 0.85;
+  }
+
+  @media (max-width: 400px){
+    .music-btn{ width: 46px; height: 46px; font-size: 17px; top: 16px; right: 16px; }
+    .music-hint{ top: 66px; right: 14px; font-size: 9px; max-width: 78px; }
+  }
+
+  @media (max-width: 400px){
+    .gallery{ flex-direction: column; }
+    .photo-slot{ aspect-ratio: 16/10; }
+    .photo-slot:nth-child(2){ margin-top: 14px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<!-- BOTON DE MUSICA: pon tu cancion en audio/cancion.mp3 -->
+<audio id="song" src="audio/cancion.mp3" loop preload="none"></audio>
+<button class="music-btn" id="music-btn" onclick="toggleMusic()">♪</button>
+<div class="music-hint">Toca para escuchar nuestra canción</div>
+
+<div class="frame">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Para ti, mi amor</div>
+    <h1 class="title">Felices 3 Meses</h1>
+    <div class="subtitle">Mi Amor</div>
+    <div class="divider"></div>
+    <p class="tagline">Cada día contigo es mi lugar favorito.</p>
+  </section>
+
+  <!-- GALERIA: AQUI VAN TUS DOS FOTOS -->
+  <section class="gallery">
+    <div class="photo-slot">
+      <img src="images/foto1.jpg" alt="Nosotros">
+    </div>
+    <div class="photo-slot">
+      <img src="images/foto2.jpg" alt="Nuestras manos">
+    </div>
+  </section>
+
+  <!-- CONTADOR -->
+  <section class="counter-section">
+    <div class="since">♥ Juntos desde el <span id="start-date-label">7 de abril</span> ♥</div>
+    <div class="counter-grid">
+      <div class="counter-item"><div class="counter-num" id="c-days">00</div><div class="counter-label">Días</div></div>
+      <div class="counter-item"><div class="counter-num" id="c-hours">00</div><div class="counter-label">Horas</div></div>
+      <div class="counter-item"><div class="counter-num" id="c-mins">00</div><div class="counter-label">Minutos</div></div>
+      <div class="counter-item"><div class="counter-num" id="c-secs">00</div><div class="counter-label">Segundos</div></div>
+      <div class="counter-sep"></div>
+      <div class="counter-footer" style="grid-column:span 4;">Y seguimos escribiendo nuestra historia... 💕</div>
+    </div>
+  </section>
+
+  <!-- CARTA -->
+  <section class="letter-wrap">
+    <div class="envelope" id="envelope" onclick="toggleLetter()">
+      <span class="flap-icon">♡</span>
+      <div class="envelope-title">Para ti, mi amor</div>
+      <div class="envelope-hint">Toca para abrir la carta</div>
+    </div>
+
+    <div class="letter-card" id="letter-card">
+      <div class="letter-heading">Para ti, mi amor</div>
+      <div class="letter-body">
+        <p>Felices 3 meses, mi amor.</p>
+        <p>Gracias por llegar a mi vida y convertir estos tres meses en los más bonitos. Cada sonrisa, cada abrazo y cada momento contigo hacen que me enamore más de ti.</p>
+        <p>Espero que este sea solo el comienzo de una historia llena de amor, sueños y muchísimos recuerdos juntos.</p>
+      </div>
+      <div class="letter-signoff">Te amo muchísimo. ♥</div>
+    </div>
+  </section>
+
+  <!-- BOTON SORPRESA -->
+  <section class="cta-wrap">
+    <button class="cta-btn" onclick="toggleSurprise()">Te Amo ♡</button>
+    <div class="cta-hint">Presiona el botón para una sorpresa</div>
+    <div class="surprise" id="surprise">
+      Y si volviera a empezar,<br>volvería a elegirte a ti,<br><span>una y mil veces.</span> ♥
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+
+</div>
+
+<script>
+  // ======= CONFIGURA AQUI LA FECHA DE INICIO =======
+  // Formato: año, mes (1-12), día, hora, minuto
+  const startDate = new Date(2026, 3, 7, 0, 0, 0); // 7 de abril de 2026
+
+  function pad(n){ return n.toString().padStart(2,'0'); }
+
+  function updateCounter(){
+    const now = new Date();
+    let diff = now - startDate;
+    if(diff < 0) diff = 0;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const mins = Math.floor((diff / (1000*60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('c-days').textContent = pad(days);
+    document.getElementById('c-hours').textContent = pad(hours);
+    document.getElementById('c-mins').textContent = pad(mins);
+    document.getElementById('c-secs').textContent = pad(secs);
+  }
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  function toggleLetter(){
+    const card = document.getElementById('letter-card');
+    const env = document.getElementById('envelope');
+    card.classList.toggle('open');
+    env.querySelector('.envelope-hint').textContent = card.classList.contains('open')
+      ? 'Toca para cerrar la carta'
+      : 'Toca para abrir la carta';
+    if(card.classList.contains('open')){
+      card.scrollIntoView({behavior:'smooth', block:'nearest'});
+    }
+  }
+
+  function toggleSurprise(){
+    document.getElementById('surprise').classList.toggle('show');
+  }
+
+  // ======= MUSICA =======
+  const song = document.getElementById('song');
+  const musicBtn = document.getElementById('music-btn');
+
+  function toggleMusic(){
+    if(song.paused){
+      song.play().catch(()=>{
+        alert('Agrega tu canción en audio/cancion.mp3 para que suene aquí 🎵');
+      });
+      musicBtn.classList.add('playing');
+      musicBtn.textContent = '❚❚';
+    } else {
+      song.pause();
+      musicBtn.classList.remove('playing');
+      musicBtn.textContent = '♪';
+    }
+  }
+
+  // Corazones flotantes decorativos
+  const heartsContainer = document.getElementById('hearts');
+  const heartChars = ['♥','♡'];
+  for(let i=0; i<14; i++){
+    const s = document.createElement('span');
+    s.textContent = heartChars[Math.floor(Math.random()*heartChars.length)];
+    s.style.left = Math.random()*100 + '%';
+    s.style.animationDelay = (Math.random()*14) + 's';
+    s.style.fontSize = (12 + Math.random()*14) + 'px';
+    heartsContainer.appendChild(s);
+  }
+</script>
+
+</body>
+</html>
